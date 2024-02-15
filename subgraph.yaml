@@ -1,0 +1,29 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Wiki
+    network: matic
+    source:
+      address: "0xb8aa8cabfba7ee3ccb218a9969aef86dff3b9d2d"
+      abi: Wiki
+      startBlock: 29873409
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OwnerUpdated
+        - Posted
+      abis:
+        - name: Wiki
+          file: ./abis/Wiki.json
+      eventHandlers:
+        - event: OwnerUpdated(indexed address,indexed address)
+          handler: handleOwnerUpdated
+        - event: Posted(indexed address,string)
+          handler: handlePosted
+      file: ./src/wiki.ts

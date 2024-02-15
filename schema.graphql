@@ -1,0 +1,17 @@
+type OwnerUpdated @entity(immutable: true) {
+  id: Bytes!
+  user: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type Posted @entity(immutable: true) {
+  id: Bytes!
+  _from: Bytes! # address
+  _ipfs: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
